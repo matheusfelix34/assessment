@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +25,18 @@ Route::post('/cad_profile',function(Request $request){
 
   
     });
+
+Route::post('/cad_report',function(Request $request){
+   
+        
+        $reportController = new ReportController();
+      
+        return json_encode($reportController->store($request));
+
+
+  
+    });
+
 
  
 
