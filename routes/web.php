@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/profile','App\Http\Controllers\ProfileController@index')->name('profile');
+Route::resource('/profile', App\Http\Controllers\ProfileController::class);
 
 Route::get('/', function () {
-    return view('index');
-});
+    return view('home');
+})->name('home');

@@ -8,18 +8,19 @@
   <header>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Profile</a></li>
+        <li><a href="{{ route('home') }}">Home</a></li>
+        <li><a href=" {{ url('/profile') }}">Profile</a></li>
         <li><a href="#">Reports</a></li>
       </ul>
     </nav>
   </header>
   
   <main>
-    <h1>Welcome to Assessment</h1>
+    @yield('content')
    
   </main>
 
   <script src={{ mix('js/app.js') }}></script>
+  @stack('scripts')
 </body>
 </html>
