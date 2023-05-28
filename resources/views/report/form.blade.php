@@ -18,7 +18,7 @@
         <div class="col-md-3">
 			<select name="profiles[]" id="profiles" multiple required="required">
 				@foreach($profiles as $profile)
-					<option value="{{ $profile->id }}">{{ $profile->first_name }} {{ $profile->last_name }}</option>
+					<option   value="{{ $profile->id }}">{{ $profile->first_name }} {{ $profile->last_name }} </option>
 				@endforeach
 			</select>
         </div>

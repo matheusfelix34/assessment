@@ -1,7 +1,7 @@
 
 <fieldset>
     <div class="form-container">
-<legend> PROFILE REGISTRATION</legend>
+<legend> PROFILE EDIT</legend>
 	<div class="form-group">
 		
         <div class="col-md-2">

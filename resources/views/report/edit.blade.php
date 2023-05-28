@@ -2,13 +2,13 @@
 
 @section('content')
 
-	<form method="post" name="profile-form" id="profile-form" action="{{url("profile/$profile->id")}}" required>
+	<form method="post" name="report-form" id="report-form" action="{{url("report/$report->id")}}" required>
 		{{ csrf_field() }}
 		{{ method_field('PUT') }}
-			@include('profile.edit_form')
+			@include('report.edit_form')
 	<div align="center">       
 		<br>             
-		<a href="{{ url('/profile') }}" class="btn btn-primary">Voltar</a>
+		<a href="{{ url('/report') }}" class="btn btn-primary">Voltar</a>
 		<input type="submit" class="btn btn-primary" value="Update">
       
 	</div>

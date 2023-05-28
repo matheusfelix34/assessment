@@ -93,7 +93,21 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $report = $this->report->find($id);
+
+        $profiles_id= $this->reportprofile->select('profile_id')
+        ->where('report_id',$id)
+        ->get()
+        ->pluck('profile_id')
+        ;
+    
+        $profiles= $this->profile->select('*')
+        ->whereIn('id',$profiles_id)
+        ->get();
+       
+       
+        return view('report.show',['report'=>$report,'profiles'=>$profiles]);
     }
 
     /**
@@ -104,7 +118,18 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        $report = $this->report->find($id);
+        
+        $profiles_id= $this->reportprofile->select('profile_id')
+        ->where('report_id',$id)
+        ->get()
+        ->pluck('profile_id')
+        ;
+        $profiles= $this->profile->all();
+        $profiles_id= $profiles_id->toArray();
+      
+       
+        return view('report.edit', compact('report','profiles','profiles_id'));
     }
 
     /**
@@ -116,7 +141,25 @@ class ReportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $report = $this->report->find($id)->update([
+            'title'=>$request->title,
+            'description'=>$request->description,
+        ]);
+
+        $res=$this->reportprofile::where('report_id',$id)->delete();
+
+        $profiles_id=$request->profiles;
+       
+        for ($i=0; $i <count($profiles_id) ; $i++) { 
+            $reg_reportprofile= new ReportProfile();
+            $reg_reportprofile->report_id=$id;
+            $reg_reportprofile->profile_id=$profiles_id[$i];
+            $reg_reportprofile->save();
+        }
+
+
+        return redirect()->route('report.index')->with('success', 'Action performed successfully!');
     }
 
     /**
@@ -127,6 +170,20 @@ class ReportController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del=$this->report->destroy($id);
+        $res=$this->reportprofile::where('report_id',$id)->delete();
+        return redirect()->route('report.index')->with('success', 'Action performed successfully!');
+        // $rels=$this->reportprofile->select('*')
+        // ->where('profile_id',$id)
+        // ->get();
+       
+        
+        // if(count($rels)>0){
+        //     return redirect()->route('profile.index')->with('erro', 'This profile is already related to a report or more!');
+        // }else{
+        //     $del=$this->profile->destroy($id);
+        //     return redirect()->route('profile.index')->with('success', 'Action performed successfully!');
+
+        // }
     }
 }
