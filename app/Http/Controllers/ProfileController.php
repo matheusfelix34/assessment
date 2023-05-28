@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\ReportProfile;
+
 
 class ProfileController extends Controller
 {
@@ -16,6 +18,7 @@ class ProfileController extends Controller
      public function __construct()
      {
         $this->profile = new Profile();
+        $this->reportprofile = new ReportProfile();
      }
 
 
@@ -124,6 +127,23 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+       
+        
+       
+        $rels=$this->reportprofile->select('*')
+        ->where('profile_id',$id)
+        ->get();
+       
+        
+        if(count($rels)>0){
+            return redirect()->route('profile.index')->with('erro', 'This profile is already related to a report or more!');
+        }else{
+            $del=$this->profile->destroy($id);
+            return redirect()->route('profile.index')->with('success', 'Action performed successfully!');
+
+        }
+
+
+
     }
 }

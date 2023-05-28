@@ -44,5 +44,6 @@ $('#register-button').click(function() {
 $(document).ready(function() {
     setTimeout(function() {
       $('.alert-success').fadeOut('slow');
+      $('.alert-danger').fadeOut('slow');
     }, 3000); 
   });

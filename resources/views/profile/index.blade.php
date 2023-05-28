@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if (session('status'))
+@if (session('erro'))
 <div class="alert alert-danger">
 {{ session('status') }}
 </div>
