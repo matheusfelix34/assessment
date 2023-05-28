@@ -24,7 +24,9 @@ class ProfileController extends Controller
 
     public function index()
     {
-        return view('profile/index');
+        $profiles=$this->profile->all();
+        
+        return view('profile/index',compact('profiles'));
     }
 
     /**
@@ -73,7 +75,10 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+       
+        $profile = $this->profile->find($id);
+       
+        return view('profile.show',['profile'=>$profile]);
     }
 
     /**
@@ -84,7 +89,11 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = $this->profile->find($id);
+        
+       
+        return view('profile.edit', compact('profile'));
+       
     }
 
     /**
@@ -96,7 +105,15 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $profile = $this->profile->find($id)->update([
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
+            'dob'=>$request->dob,
+            'gender'=>$request->gender
+        ]);
+        return redirect()->route('profile.index')->with('success', 'Action performed successfully!');
+         
+       
     }
 
     /**

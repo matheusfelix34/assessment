@@ -27,12 +27,33 @@
 <thead>
     <tr>
             <th><center>First Name</th>
-            <th><center>Last name</th>        
-            <th class="width_acoes" style="width:190px;"><center>AÇÕES</th>
+            <th><center>Last name</th>    
+            <th><center>Date of Birth</th>
+            <th><center>Gender</th>    
+            <th class="width_acoes" style="width:190px;"><center>Actions</th>
        
     </tr>
     
 </thead>
+<tbody>
+    @foreach ($profiles as $profile)
+        <tr>
+            <td>{{ $profile->first_name }}</td>
+            <td>{{ $profile->last_name }}</td>
+            <td>{{ $profile->dob }}</td>
+            <td>{{ $profile->gender }}</td>
+            <td>
+                <a href="{{ route('profile.show', $profile->id) }}" class="btn btn-primary">Show</a>
+                <form action="{{ route('profile.destroy', $profile->id) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+                <a href="{{ route('profile.edit', $profile->id) }}" class="btn-edit">Edit</a>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
 </table>
     
 

@@ -2,14 +2,15 @@
 
 @section('content')
 
-	<form method="post" name="profile-form" id="profile-form" action="{{url('')}}" required>
+	<form method="post" name="profile-form" id="profile-form" action="{{url("profile/$profile->id")}}" required>
 		{{ csrf_field() }}
-			@include('profile.form')
+		{{ method_field('PUT') }}
+			@include('profile.edit_form')
 	<div align="center">       
 		<br>             
 		<a href="{{ url('/profile') }}" class="btn btn-primary">Voltar</a>
-		
-        <button type="button" id="register-button" class="btn btn-primary">Register</button>
+		<input type="submit" class="btn btn-primary" value="Update">
+      
 	</div>
 
 	<br/><br/>

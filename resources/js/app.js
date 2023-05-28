@@ -3,6 +3,7 @@ window.$ = window.jQuery = require('jquery');
 
 
 
+
 $('#register-button').click(function() {
    
     var first_name1 = document.getElementById("first_name").value;
@@ -32,10 +33,16 @@ $('#register-button').click(function() {
       element.type === "date" ||
       element.type === "select-one"
     ) {
-      // Define o valor do elemento como vazio
+     
       element.value = "";
     }
   }
         }
     });
 });
+
+$(document).ready(function() {
+    setTimeout(function() {
+      $('.alert-success').fadeOut('slow');
+    }, 3000); 
+  });
