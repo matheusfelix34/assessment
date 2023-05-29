@@ -7,7 +7,7 @@
 			@include('profile.form')
 	<div align="center">       
 		<br>             
-		<a href="{{ url('/profile') }}" class="btn btn-primary">Voltar</a>
+		<a href="{{ url('/profile') }}" class="btn btn-primary">Back</a>
 		
         <button type="button" id="register-button-profile" class="btn btn-primary">Register</button>
 	</div>

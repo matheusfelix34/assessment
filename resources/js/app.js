@@ -70,8 +70,11 @@ $('#register-button-report').click(function() {
       dataType: "json",
       data: {  title: title1, description:description1, profiles:profiles_array},
       success: function (data) {
-        if (data == 1) {
+       
+        if (data>0) {
           alert("Profile created successfully.");
+         
+         
 
 
           var form = document.getElementById("report-form");
@@ -92,6 +95,7 @@ $('#register-button-report').click(function() {
 
         }else{
           alert("sorry, but it was not possible to register the report, try again or contact the responsible system.");
+          
         }
 
         

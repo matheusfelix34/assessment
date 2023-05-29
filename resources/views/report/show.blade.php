@@ -41,6 +41,6 @@
 		<br>
 		<br>
 	<div align="center">
-        <a href="{{ url('/report') }}" class="btn btn-primary">Voltar</a>
+        <a href="{{ url('/report') }}" class="btn btn-primary">Back</a>
 	</div>
 @endsection

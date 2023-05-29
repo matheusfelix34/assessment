@@ -7,7 +7,7 @@
 			@include('report.form')
 	<div align="center">       
 		<br>             
-		<a href="{{ url('/report') }}" class="btn btn-primary">Voltar</a>
+		<a href="{{ url('/report') }}" class="btn btn-primary">Back</a>
 		
         <button type="button" id="register-button-report" class="btn btn-primary">Register</button>
 	</div>

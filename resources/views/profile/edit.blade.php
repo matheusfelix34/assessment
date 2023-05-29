@@ -8,7 +8,7 @@
 			@include('profile.edit_form')
 	<div align="center">       
 		<br>             
-		<a href="{{ url('/profile') }}" class="btn btn-primary">Voltar</a>
+		<a href="{{ url('/profile') }}" class="btn btn-primary">Back</a>
 		<input type="submit" class="btn btn-primary" value="Update">
       
 	</div>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Report;
 use App\Models\Profile;
 use App\Models\ReportProfile;
+use App\Jobs\GeneratePdf10Emailjob;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
 {
@@ -70,17 +72,24 @@ class ReportController extends Controller
            
             
             if($reg_reportprofile){
+               
+                
+                $id=$reg_report->id;
+                //$report = $this->report->find($reg_report->id);
+                \App\Jobs\GeneratePdf10Emailjob::dispatch($request->title,$request->description)->delay(now()->addSeconds(10));
 
                 return 1;
+
+
             }else{
                 $this->report->destroy($id);
                
-                return 3;
+                return 0;
             }
            
-            return 1;
+           
         }else{
-            return 2;
+            return 0;
         }
         
     }
@@ -118,7 +127,10 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
+
+
         $report = $this->report->find($id);
+       
         
         $profiles_id= $this->reportprofile->select('profile_id')
         ->where('report_id',$id)

@@ -23,6 +23,6 @@
 	</div>
 	
 	<div align="center">
-        <a href="{{ url('/profile') }}" class="btn btn-primary">Voltar</a>
+        <a href="{{ url('/profile') }}" class="btn btn-primary">Back</a>
 	</div>
 @endsection
